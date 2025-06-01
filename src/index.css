@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', serif;
+  --font-inter: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  @apply text-neutral-800 bg-neutral-50 overflow-x-hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair);
+  @apply font-medium leading-tight;
+}
+
+.slide-fade-in {
+  animation: slideFadeIn 0.7s ease-in-out;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-500;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .image-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 24px;
+  }
+}
+
+.navbar-fixed {
+  @apply bg-white bg-opacity-90 backdrop-blur-md shadow-sm;
+}
+
+.contact-input {
+  @apply w-full px-4 py-2 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-200 focus:border-amber-400 transition-all;
+}
+
+.btn {
+  @apply px-6 py-3 bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors font-medium text-sm tracking-wide;
+}
+
+.category-button {
+  @apply px-4 py-2 rounded-full text-sm transition-all;
+}
+
+.category-button.active {
+  @apply bg-amber-100 text-amber-800;
+}
+
+.category-button:not(.active) {
+  @apply bg-neutral-200 text-neutral-700 hover:bg-neutral-300;
+}
+
+/* Make images load progressively */
+.progressive-image {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.progressive-image.loading {
+  opacity: 0.3;
+  filter: blur(10px);
+}
+
+.progressive-image.loaded {
+  opacity: 1;
+  filter: blur(0);
+}
