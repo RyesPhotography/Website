@@ -28,6 +28,15 @@ const About: React.FC = () => {
     };
   }, []);
 
+  // Load image and track when it's ready
+  useEffect(() => {
+    const img = new Image();
+    img.src = aboutInfo.image;
+    img.onload = () => {
+      setImageLoaded(true);
+    };
+  }, []);
+
   return (
     <section id="about" className="py-20 px-4 bg-neutral-100">
       <div className="max-w-7xl mx-auto">
@@ -37,7 +46,6 @@ const About: React.FC = () => {
           </h2>
           <div className="w-20 h-1 bg-amber-500 mx-auto mb-8"></div>
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Photo */}
           <div className={`${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -53,7 +61,6 @@ const About: React.FC = () => {
                   width={800}
                   height={1000}
                   className="w-full h-auto"
-                  onLoadComplete={() => setImageLoaded(true)}
                 />
               </div>
             </div>
