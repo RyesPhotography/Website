@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
               {/* Schedule Button - Moved above contact info */}
               <div className="mb-8">
                 <a 
-                  href="https://calendly.com/ryes-photographyy" 
+                  href="https://calendly.com/ryes-photographyy/30min" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn w-full flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white transition-colors"
