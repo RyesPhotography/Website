@@ -120,7 +120,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img12",
-    src: "https://images.pexels.com/photos/5384423/pexels-photo-5384423.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3872_result_result.webp",
     alt: "Corporate event with speakers",
     category: "events",
     width: 800,
