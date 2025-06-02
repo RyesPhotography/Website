@@ -6,29 +6,14 @@ import ProgressiveImage from './ProgressiveImage';
 const Gallery: React.FC = () => {
   const [isInView, setIsInView] = useState(false);
   const [visibleImages, setVisibleImages] = useState<Image[]>([]);
-  const [loadedCount, setLoadedCount] = useState(0);
   
   // Load images in batches for smooth performance
   const BATCH_SIZE = 4;
   
   // Load initial batch
   useEffect(() => {
-    setLoadedCount(0);
     setVisibleImages(galleryImages.slice(0, BATCH_SIZE));
   }, []);
-
-  // Load more images as they come into view
-  useEffect(() => {
-    if (loadedCount < galleryImages.length && isInView) {
-      const timer = setTimeout(() => {
-        const nextBatch = galleryImages.slice(0, Math.min(galleryImages.length, visibleImages.length + BATCH_SIZE));
-        setVisibleImages(nextBatch);
-        setLoadedCount(nextBatch.length);
-      }, 200);
-      
-      return () => clearTimeout(timer);
-    }
-  }, [loadedCount, visibleImages.length, isInView]);
   
   // Detect when gallery section enters viewport
   useEffect(() => {
@@ -78,11 +63,11 @@ const Gallery: React.FC = () => {
           Portfolio Gallery
         </h2>
         <p className="text-neutral-600 max-w-2xl mx-auto">
-          Browse through my collection of photographs across different categories. Each image tells a unique story captured through my lens.
+          Browse through my collection of photographs. Each image tells a unique story captured through my lens.
         </p>
       </div>
 
-      {/* Gallery Grid */}
+      {/* Gallery Grid - No category filtering */}
       <div className="image-gallery">
         {visibleImages.map((image, index) => (
           <div 
