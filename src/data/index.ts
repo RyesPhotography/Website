@@ -131,6 +131,7 @@ export const galleryImages: Image[] = [
 export const aboutInfo = {
   name: "Riley Morris",
   title: "Saratoga Springs Professional Photographer",
+  // 📸 PASTE NEW IMAGE URLs HERE - Add URL between the " " where it has image:
   image: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/19c1b6ddb75920febefe6d85d27cf366fe3a3ebc/Riley.webp",
   bio: "Professional photographer serving Saratoga Springs, NY and the greater Capital Region. Specializing in weddings, portraits, and events throughout Saratoga County.",
   location: "Saratoga Springs, NY",
