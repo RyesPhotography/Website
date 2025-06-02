@@ -104,7 +104,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img10",
-    src: "https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3785_result.webp",
     alt: "Studio portrait with artistic lighting",
     category: "portraits",
     width: 800,
