@@ -10,10 +10,32 @@
     <meta property="og:title" content="ryes.photography | Professional Photography Portfolio" />
     <meta property="og:description" content="Capturing beautiful moments and creating lasting memories through professional photography." />
     <meta property="og:type" content="website" />
+    
+    <!-- Preconnect for faster external requests -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin>
+    
+    <!-- Preload critical hero images for instant display -->
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1800" crossorigin>
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/4066041/pexels-photo-4066041.jpeg?auto=compress&cs=tinysrgb&w=1800" crossorigin>
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg?auto=compress&cs=tinysrgb&w=1800" crossorigin>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <title>ryes.photography | Professional Photography Portfolio</title>
+    
+    <!-- Service Worker for image caching -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log('Image caching enabled'))
+            .catch(() => console.log('Image caching failed to load'));
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
