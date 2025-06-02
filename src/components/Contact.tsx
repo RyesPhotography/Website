@@ -105,7 +105,7 @@ const Contact: React.FC = () => {
   };
 
   const contactInfo = [
-    { icon: <Mail size={20} />, text: "morris.riley01@gmail.com" },
+    { icon: <Mail size={20} />, text: "ryes.photographyy@gmail.com" },
     { icon: <Phone size={20} />, text: "+1 (518) 502-3655" },
     { icon: <MapPin size={20} />, text: "Saratoga Springs, N.Y." }
   ];
