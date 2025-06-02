@@ -96,7 +96,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img9",
-    src: "https://images.pexels.com/photos/1855991/pexels-photo-1855991.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3736_result.webp",
     alt: "Wedding rings close-up",
     category: "weddings",
     width: 800,
