@@ -88,7 +88,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img8",
-    src: "https://images.pexels.com/photos/787961/pexels-photo-787961.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2712(1)_result_result.webp",
     alt: "People at a formal gala event",
     category: "events",
     width: 800,
