@@ -32,7 +32,7 @@ export const categories: Category[] = [
 export const galleryImages: Image[] = [
   {
     id: "img1",
-    src: "https://images.pexels.com/photos/1456613/pexels-photo-1456613.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2501(1)_result.webp",
     alt: "Couple in wedding attire walking through a forest",
     category: "weddings",
     width: 800,
