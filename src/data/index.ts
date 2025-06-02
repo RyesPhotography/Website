@@ -112,7 +112,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img11",
-    src: "https://images.pexels.com/photos/1028225/pexels-photo-1028225.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3810_result_result.webp",
     alt: "Alpine lake with mountain reflections",
     category: "nature",
     width: 800,
