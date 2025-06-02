@@ -33,15 +33,29 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   }, [src]);
 
   return (
-    <img
-      src={imageSrc || src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading="lazy"
-      className={`progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className}`}
-      onLoad={() => setIsLoaded(true)}
-    />
+    <div className="relative overflow-hidden">
+      {/* Loading skeleton */}
+      {!isLoaded && (
+        <div 
+          className="absolute inset-0 bg-neutral-200 animate-pulse"
+          style={{ width, height }}
+        />
+      )}
+      
+      <img
+        src={imageSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        className={`progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className} focus:outline-none`}
+        style={{ 
+          outline: 'none',
+          border: 'none'
+        }}
+        onLoad={() => setIsLoaded(true)}
+      />
+    </div>
   );
 };
 
