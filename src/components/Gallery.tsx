@@ -1,19 +1,48 @@
+Pasted content
+4.73 KB •144 lines
+•
+Formatting may be inconsistent from source
 import React, { useState, useEffect } from 'react';
-import { galleryImages } from '../data';
+import { categories, galleryImages } from '../data';
 import { Image } from '../types';
 import ProgressiveImage from './ProgressiveImage';
 
 const Gallery: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [filteredImages, setFilteredImages] = useState<Image[]>(galleryImages);
   const [isInView, setIsInView] = useState(false);
   const [visibleImages, setVisibleImages] = useState<Image[]>([]);
+  const [loadedCount, setLoadedCount] = useState(0);
   
   // Load images in batches for smooth performance
   const BATCH_SIZE = 4;
   
-  // Load initial batch
+  // Filter images when category changes
   useEffect(() => {
-    setVisibleImages(galleryImages.slice(0, BATCH_SIZE));
-  }, []);
+    let imagesToShow: Image[];
+    if (activeCategory === 'all') {
+      imagesToShow = galleryImages;
+    } else {
+      imagesToShow = galleryImages.filter(image => image.category === activeCategory);
+    }
+    
+    setFilteredImages(imagesToShow);
+    setLoadedCount(0);
+    setVisibleImages(imagesToShow.slice(0, BATCH_SIZE));
+  }, [activeCategory]);
+
+  // Load more images as they come into view
+  useEffect(() => {
+    if (loadedCount < filteredImages.length && isInView) {
+      const timer = setTimeout(() => {
+        const nextBatch = filteredImages.slice(0, Math.min(filteredImages.length, visibleImages.length + BATCH_SIZE));
+        setVisibleImages(nextBatch);
+        setLoadedCount(nextBatch.length);
+      }, 200);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [filteredImages, loadedCount, visibleImages.length, isInView]);
   
   // Detect when gallery section enters viewport
   useEffect(() => {
@@ -41,20 +70,20 @@ const Gallery: React.FC = () => {
   // Load more images when scrolling near bottom
   useEffect(() => {
     const handleScroll = () => {
-      if (visibleImages.length >= galleryImages.length) return;
+      if (visibleImages.length >= filteredImages.length) return;
       
       const scrollPosition = window.innerHeight + window.scrollY;
       const documentHeight = document.documentElement.offsetHeight;
       
       if (scrollPosition > documentHeight - 1000) {
-        const nextBatch = galleryImages.slice(0, Math.min(galleryImages.length, visibleImages.length + BATCH_SIZE));
+        const nextBatch = filteredImages.slice(0, Math.min(filteredImages.length, visibleImages.length + BATCH_SIZE));
         setVisibleImages(nextBatch);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [visibleImages]);
+  }, [visibleImages, filteredImages]);
 
   return (
     <section id="gallery" className="py-20 px-4 max-w-7xl mx-auto">
@@ -63,11 +92,26 @@ const Gallery: React.FC = () => {
           Portfolio Gallery
         </h2>
         <p className="text-neutral-600 max-w-2xl mx-auto">
-          Browse through my collection of photographs. Each image tells a unique story captured through my lens.
+          Browse through my collection of photographs across different categories. Each image tells a unique story captured through my lens.
         </p>
       </div>
 
-      {/* Gallery Grid - No category filtering */}
+      {/* Category Filter */}
+      <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {categories.map(category => (
+          <button
+            key={category.id}
+            onClick={() => setActiveCategory(category.id)}
+            className={`category-button ${
+              activeCategory === category.id ? 'active' : ''
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Gallery Grid */}
       <div className="image-gallery">
         {visibleImages.map((image, index) => (
           <div 
@@ -92,7 +136,7 @@ const Gallery: React.FC = () => {
       </div>
 
       {/* Loading indicator */}
-      {visibleImages.length < galleryImages.length && isInView && (
+      {visibleImages.length < filteredImages.length && isInView && (
         <div className="text-center mt-8">
           <div className="animate-spin w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full mx-auto"></div>
         </div>
