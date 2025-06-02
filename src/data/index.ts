@@ -72,7 +72,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img6",
-    src: "https://images.pexels.com/photos/2613260/pexels-photo-2613260.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2664(1)_result_result.webp",
     alt: "Dramatic portrait of a man",
     category: "portraits",
     width: 800,
