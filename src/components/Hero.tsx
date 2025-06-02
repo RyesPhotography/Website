@@ -4,12 +4,12 @@ import { heroSlides } from '../data';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(heroSlides.length).fill(false));
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % heroSlides.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -23,22 +23,36 @@ const Hero: React.FC = () => {
     }
   };
 
-  // Preload images for smooth transitions
+  // Preload images and track loading state
   useEffect(() => {
-    heroSlides.forEach(slide => {
+    heroSlides.forEach((slide, index) => {
       const img = new Image();
       img.src = slide.src;
+      img.onload = () => {
+        setImagesLoaded(prev => {
+          const newState = [...prev];
+          newState[index] = true;
+          return newState;
+        });
+      };
     });
   }, []);
 
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
+      {/* Loading Skeleton - Only show if current slide isn't loaded */}
+      {!imagesLoaded[currentSlide] && (
+        <div className="absolute inset-0 bg-neutral-200 animate-pulse">
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-200 animate-shimmer"></div>
+        </div>
+      )}
+
       {/* Background Slideshow */}
       {heroSlides.map((slide, index) => (
         <div
           key={slide.id}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+            index === currentSlide && imagesLoaded[index] ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${slide.src})`,
@@ -60,7 +74,7 @@ const Hero: React.FC = () => {
           </p>
           <button 
             onClick={handleScrollDown}
-            className="btn bg-white hover:bg-amber-50 text-amber-800 border-0 mt-4"
+            className="btn bg-white hover:bg-amber-50 text-amber-800 border-0 mt-4 focus:outline-none"
           >
             View Gallery
           </button>
@@ -73,7 +87,7 @@ const Hero: React.FC = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full ${
+            className={`w-2 h-2 rounded-full focus:outline-none ${
               index === currentSlide ? 'bg-white' : 'bg-white bg-opacity-50'
             } transition-all`}
             aria-label={`Go to slide ${index + 1}`}
@@ -84,7 +98,7 @@ const Hero: React.FC = () => {
       {/* Scroll Down Indicator */}
       <button
         onClick={handleScrollDown}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10 hidden md:block"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10 hidden md:block focus:outline-none"
         aria-label="Scroll down"
       >
         <ChevronDown size={32} />
