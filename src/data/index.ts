@@ -80,7 +80,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img7",
-    src: "https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2671(1)_result_result.webp",
     alt: "Waterfall in a lush forest",
     category: "nature",
     width: 800,
