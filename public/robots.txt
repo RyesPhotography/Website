@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://ryesphotography.com/sitemap.xml
+
+# Block unnecessary files
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: *.js.map
+Disallow: *.css.map
