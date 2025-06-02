@@ -1,7 +1,3 @@
-Pasted content
-4.73 KB •144 lines
-•
-Formatting may be inconsistent from source
 import React, { useState, useEffect } from 'react';
 import { categories, galleryImages } from '../data';
 import { Image } from '../types';
@@ -94,21 +90,6 @@ const Gallery: React.FC = () => {
         <p className="text-neutral-600 max-w-2xl mx-auto">
           Browse through my collection of photographs across different categories. Each image tells a unique story captured through my lens.
         </p>
-      </div>
-
-      {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
-        {categories.map(category => (
-          <button
-            key={category.id}
-            onClick={() => setActiveCategory(category.id)}
-            className={`category-button ${
-              activeCategory === category.id ? 'active' : ''
-            }`}
-          >
-            {category.name}
-          </button>
-        ))}
       </div>
 
       {/* Gallery Grid */}
