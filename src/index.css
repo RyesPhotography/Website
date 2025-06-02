@@ -33,9 +33,16 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - hidden on mobile */
 ::-webkit-scrollbar {
   width: 8px;
+}
+
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -50,16 +57,26 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-neutral-500;
 }
 
+/* Mobile-optimized image gallery */
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 12px;
+  padding: 0 16px;
+}
+
+@media (min-width: 480px) {
+  .image-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 16px;
+  }
 }
 
 @media (min-width: 768px) {
   .image-gallery {
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-gap: 24px;
+    padding: 0 24px;
   }
 }
 
@@ -67,16 +84,44 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-white bg-opacity-90 backdrop-blur-md shadow-sm;
 }
 
+/* Mobile-optimized form inputs */
 .contact-input {
-  @apply w-full px-4 py-2 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-200 focus:border-amber-400 transition-all;
+  @apply w-full px-4 py-3 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-200 focus:border-amber-400 transition-all;
+  font-size: 16px; /* Prevents zoom on iOS */
+  min-height: 44px; /* Touch target minimum */
 }
 
+@media (max-width: 767px) {
+  .contact-input {
+    @apply py-4; /* Larger touch targets on mobile */
+  }
+}
+
+/* Mobile-optimized buttons */
 .btn {
   @apply px-6 py-3 bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors font-medium text-sm tracking-wide;
+  min-height: 44px; /* Touch target minimum */
+  min-width: 44px;
 }
 
+@media (max-width: 767px) {
+  .btn {
+    @apply py-4 px-8 text-base; /* Larger on mobile */
+    min-height: 48px;
+  }
+}
+
+/* Mobile-optimized category buttons */
 .category-button {
   @apply px-4 py-2 rounded-full text-sm transition-all;
+  min-height: 40px; /* Touch target */
+}
+
+@media (max-width: 767px) {
+  .category-button {
+    @apply px-6 py-3 text-base; /* Larger on mobile */
+    min-height: 44px;
+  }
 }
 
 .category-button.active {
@@ -87,7 +132,41 @@ h1, h2, h3, h4, h5, h6 {
   @apply bg-neutral-200 text-neutral-700 hover:bg-neutral-300;
 }
 
-/* Make images load progressively */
+/* Mobile touch improvements */
+@media (max-width: 767px) {
+  /* Ensure all clickable elements have proper touch targets */
+  button, a, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability on mobile */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Optimize spacing for mobile */
+  .container {
+    @apply px-4;
+  }
+  
+  /* Make hero text more readable on mobile */
+  h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+    line-height: 1.1;
+  }
+  
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+  
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+}
+
+/* Progressive image loading */
 .progressive-image {
   transition: opacity 0.3s ease-in-out;
 }
@@ -100,4 +179,20 @@ h1, h2, h3, h4, h5, h6 {
 .progressive-image.loaded {
   opacity: 1;
   filter: blur(0);
+}
+
+/* Mobile viewport fixes */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific fixes */
+  body {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  input, textarea {
+    -webkit-user-select: text;
+    user-select: text;
+  }
 }
