@@ -1,188 +1,119 @@
-import { SlideImage, Image, Category } from '../types';
-// 📸 PASTE NEW IMAGE URLs HERE - Add URL between the " " where it has src: below id: "slide1"
-export const heroSlides: SlideImage[] = [
-  {
-    id: "slide1",
-    src: "https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Wedding couple kissing under a forest canopy",
-    title: "Capturing Life's Beautiful Moments"
-  },
-  {
-    id: "slide2",
-    src: "https://images.pexels.com/photos/4066041/pexels-photo-4066041.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Portrait of a woman with dramatic lighting",
-    title: "Portraits That Tell Your Story"
-  },
-  {
-    id: "slide3",
-    src: "https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Breathtaking landscape of mountains at sunset",
-    title: "Nature's Magnificent Beauty"
-  }
-];
+import React, { useState, useEffect } from 'react';
+import { galleryImages } from '../data';
+import { Image } from '../types';
+import ProgressiveImage from './ProgressiveImage';
 
-export const categories: Category[] = [
-  { id: "all", name: "All" },
-  { id: "weddings", name: "Saratoga Weddings" },
-  { id: "portraits", name: "Portrait Sessions" },
-  { id: "nature", name: "Adirondack Nature" },
-  { id: "events", name: "Local Events" }
-];
-// 📸 PASTE NEW IMAGE URLs HERE - Add URL between the " " where it has src: below id: "img1"
-export const galleryImages: Image[] = [
-  {
-    id: "img1",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2501(1)_result.webp",
-    alt: "Saratoga Springs wedding couple walking through Congress Park forest ceremony",
-    category: "weddings",
-    width: 800,
-    height: 1200
-  },
-  {
-    id: "img2",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2575(1)_result.webp",
-    alt: "Saratoga Springs portrait photographer - woman with flowers headshot session",
-    category: "portraits",
-    width: 800,
-    height: 1067
-  },
-  {
-    id: "img3",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2584(1)_result.webp",
-    alt: "Adirondack mountain landscape photography near Saratoga Springs NY",
-    category: "nature",
-    width: 800,
-    height: 1200
-  },
-  {
-    id: "img4",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2643(1)_result_result.webp",
-    alt: "Saratoga Springs event photographer capturing SPAC concert crowd dancing",
-    category: "events",
-    width: 800,
-    height: 1067
-  },
-  {
-    id: "img5",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2655(1)_result_result.webp",
-    alt: "Saratoga Race Course wedding photographer - bride and groom intimate embrace",
-    category: "weddings",
-    width: 800,
-    height: 1067
-  },
-  {
-    id: "img6",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2664(1)_result_result.webp",
-    alt: "Professional headshot photographer Saratoga Springs - dramatic male portrait",
-    category: "portraits",
-    width: 800,
-    height: 1200
-  },
-  {
-    id: "img7",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2671(1)_result_result.webp",
-    alt: "Saratoga Spa State Park waterfall nature photography session",
-    category: "nature",
-    width: 800,
-    height: 1067
-  },
-  {
-    id: "img8",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2712(1)_result_result.webp",
-    alt: "Saratoga Springs corporate event photographer at Canfield Casino gala",
-    category: "events",
-    width: 800,
-    height: 1200
-  },
-  {
-    id: "img9",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3736_result.webp",
-    alt: "Saratoga Springs wedding ring photography macro detail shots",
-    category: "weddings",
-    width: 800,
-    height: 1200
-  },
-  {
-    id: "img10",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3785_result.webp",
-    alt: "Studio portrait photographer Saratoga Springs NY - artistic lighting session",
-    category: "portraits",
-    width: 800,
-    height: 1067
-  },
-  {
-    id: "img11",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3810_result_result.webp",
-    alt: "Lake George alpine photography near Saratoga Springs with mountain reflections",
-    category: "nature",
-    width: 800,
-    height: 1200
-  },
-  {
-    id: "img12",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3872_result_result.webp",
-    alt: "Saratoga Springs business event photographer documenting corporate speakers",
-    category: "events",
-    width: 800,
-    height: 1067
-  }
-];
+const Gallery: React.FC = () => {
+  const [isInView, setIsInView] = useState(false);
+  const [visibleImages, setVisibleImages] = useState<Image[]>([]);
+  const [loadedCount, setLoadedCount] = useState(0);
+  
+  // Load images in batches for smooth performance
+  const BATCH_SIZE = 4;
+  
+  // Load initial batch
+  useEffect(() => {
+    setLoadedCount(0);
+    setVisibleImages(galleryImages.slice(0, BATCH_SIZE));
+  }, []);
 
-export const aboutInfo = {
-  name: "Riley Morris",
-  title: "Saratoga Springs Professional Photographer",
-  // 📸 PASTE NEW IMAGE URLs HERE - Add URL between the " " where it has image:
-  image: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/19c1b6ddb75920febefe6d85d27cf366fe3a3ebc/Riley.webp",
-  bio: "Professional photographer serving Saratoga Springs, NY and the greater Capital Region. Specializing in weddings, portraits, and events throughout Saratoga County.",
-  location: "Saratoga Springs, NY",
-  serviceArea: "Saratoga Springs, Ballston Spa, Clifton Park, Albany, Troy, Schenectady, Greenfield Center, West Milton, Glens Falls, South Glens Falls, Fort Edward, Hudson Falls, Greenwich, Stillwater",
-  specialties: [
-    "Saratoga Springs Wedding Photography",
-    "Congress Park Portrait Sessions", 
-    "Saratoga Race Course Events",
-    "SPAC Concert Photography",
-    "Adirondack Nature Photography"
-  ],
-  achievements: [
-    "2+ years serving Saratoga Springs couples and families",
-    "Featured local photographer for Saratoga Springs events",
-    "Specialized in Capitol Region wedding venues"
-  ]
+  // Load more images as they come into view
+  useEffect(() => {
+    if (loadedCount < galleryImages.length && isInView) {
+      const timer = setTimeout(() => {
+        const nextBatch = galleryImages.slice(0, Math.min(galleryImages.length, visibleImages.length + BATCH_SIZE));
+        setVisibleImages(nextBatch);
+        setLoadedCount(nextBatch.length);
+      }, 200);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [loadedCount, visibleImages.length, isInView]);
+  
+  // Detect when gallery section enters viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const galleryElement = document.getElementById('gallery');
+    if (galleryElement) {
+      observer.observe(galleryElement);
+    }
+
+    return () => {
+      if (galleryElement) {
+        observer.unobserve(galleryElement);
+      }
+    };
+  }, []);
+
+  // Load more images when scrolling near bottom
+  useEffect(() => {
+    const handleScroll = () => {
+      if (visibleImages.length >= galleryImages.length) return;
+      
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const documentHeight = document.documentElement.offsetHeight;
+      
+      if (scrollPosition > documentHeight - 1000) {
+        const nextBatch = galleryImages.slice(0, Math.min(galleryImages.length, visibleImages.length + BATCH_SIZE));
+        setVisibleImages(nextBatch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visibleImages]);
+
+  return (
+    <section id="gallery" className="py-20 px-4 max-w-7xl mx-auto">
+      <div className={`text-center mb-12 ${isInView ? 'animate-slide-up' : 'opacity-0'}`}>
+        <h2 className="text-3xl md:text-4xl font-playfair font-semibold mb-3 text-neutral-800">
+          Portfolio Gallery
+        </h2>
+        <p className="text-neutral-600 max-w-2xl mx-auto">
+          Browse through my collection of photographs across different categories. Each image tells a unique story captured through my lens.
+        </p>
+      </div>
+
+      {/* Gallery Grid */}
+      <div className="image-gallery">
+        {visibleImages.map((image, index) => (
+          <div 
+            key={image.id}
+            className={`overflow-hidden rounded-md transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
+              isInView ? 'animate-fade-in' : 'opacity-0'
+            }`}
+            style={{ 
+              animationDelay: `${(index % BATCH_SIZE) * 100}ms`,
+              willChange: 'transform'
+            }}
+          >
+            <ProgressiveImage
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              className="w-full h-80 object-cover"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Loading indicator */}
+      {visibleImages.length < galleryImages.length && isInView && (
+        <div className="text-center mt-8">
+          <div className="animate-spin w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full mx-auto"></div>
+        </div>
+      )}
+    </section>
+  );
 };
 
-// SEO-optimized business schema data
-export const businessInfo = {
-  name: "Ryes Photography",
-  description: "Professional photography services in Saratoga Springs, NY specializing in weddings, portraits, and events",
-  address: {
-    locality: "Saratoga Springs",
-    region: "NY",
-    postalCode: "12866",
-    country: "US"
-  },
-  serviceArea: [
-    "Saratoga Springs, NY",
-    "Saratoga County, NY", 
-    "Capital Region, NY",
-    "Ballston Spa, NY",
-    "Clifton Park, NY",
-    "Greenfield Center, NY",
-    "West Milton, NY", 
-    "Glens Falls, NY",
-    "South Glens Falls, NY",
-    "Fort Edward, NY",
-    "Hudson Falls, NY",
-    "Greenwich, NY",
-    "Stillwater, NY",
-    "Albany, NY",
-    "Troy, NY",
-    "Schenectady, NY"
-  ],
-  services: [
-    "Wedding Photography Saratoga Springs",
-    "Portrait Photography Saratoga Springs", 
-    "Event Photography Saratoga Springs",
-    "Engagement Photography Saratoga Springs",
-    "Family Photography Saratoga Springs"
-  ]
-};
+export default Gallery;
