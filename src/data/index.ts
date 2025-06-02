@@ -4,36 +4,36 @@ export const heroSlides: SlideImage[] = [
   {
     id: "slide1",
     src: "https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Wedding couple kissing under a forest canopy",
-    title: "Capturing Life's Beautiful Moments"
+    alt: "Saratoga Springs wedding photographer capturing couple's romantic forest ceremony",
+    title: "Capturing Saratoga Springs' Beautiful Moments"
   },
   {
     id: "slide2",
     src: "https://images.pexels.com/photos/4066041/pexels-photo-4066041.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Portrait of a woman with dramatic lighting",
-    title: "Portraits That Tell Your Story"
+    alt: "Professional portrait photography with dramatic lighting in Saratoga Springs NY",
+    title: "Portraits That Tell Your Saratoga Story"
   },
   {
     id: "slide3",
     src: "https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Breathtaking landscape of mountains at sunset",
-    title: "Nature's Magnificent Beauty"
+    alt: "Saratoga Springs landscape photography capturing Adirondack mountain sunset",
+    title: "Saratoga's Natural Beauty Captured"
   }
 ];
 
 export const categories: Category[] = [
   { id: "all", name: "All" },
-  { id: "weddings", name: "Weddings" },
-  { id: "portraits", name: "Portraits" },
-  { id: "nature", name: "Nature" },
-  { id: "events", name: "Events" }
+  { id: "weddings", name: "Saratoga Weddings" },
+  { id: "portraits", name: "Portrait Sessions" },
+  { id: "nature", name: "Adirondack Nature" },
+  { id: "events", name: "Local Events" }
 ];
 
 export const galleryImages: Image[] = [
   {
     id: "img1",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2501(1)_result.webp",
-    alt: "Couple in wedding attire walking through a forest",
+    alt: "Saratoga Springs wedding couple walking through Congress Park forest ceremony",
     category: "weddings",
     width: 800,
     height: 1200
@@ -41,7 +41,7 @@ export const galleryImages: Image[] = [
   {
     id: "img2",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2575(1)_result.webp",
-    alt: "Portrait of a woman with flowers in her hair",
+    alt: "Saratoga Springs portrait photographer - woman with flowers headshot session",
     category: "portraits",
     width: 800,
     height: 1067
@@ -49,7 +49,7 @@ export const galleryImages: Image[] = [
   {
     id: "img3",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2584(1)_result.webp",
-    alt: "Mountain landscape at sunset",
+    alt: "Adirondack mountain landscape photography near Saratoga Springs NY",
     category: "nature",
     width: 800,
     height: 1200
@@ -57,7 +57,7 @@ export const galleryImages: Image[] = [
   {
     id: "img4",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2643(1)_result_result.webp",
-    alt: "People dancing at a concert event",
+    alt: "Saratoga Springs event photographer capturing SPAC concert crowd dancing",
     category: "events",
     width: 800,
     height: 1067
@@ -65,7 +65,7 @@ export const galleryImages: Image[] = [
   {
     id: "img5",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2655(1)_result_result.webp",
-    alt: "Bride and groom embracing",
+    alt: "Saratoga Race Course wedding photographer - bride and groom intimate embrace",
     category: "weddings",
     width: 800,
     height: 1067
@@ -73,7 +73,7 @@ export const galleryImages: Image[] = [
   {
     id: "img6",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2664(1)_result_result.webp",
-    alt: "Dramatic portrait of a man",
+    alt: "Professional headshot photographer Saratoga Springs - dramatic male portrait",
     category: "portraits",
     width: 800,
     height: 1200
@@ -81,7 +81,7 @@ export const galleryImages: Image[] = [
   {
     id: "img7",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2671(1)_result_result.webp",
-    alt: "Waterfall in a lush forest",
+    alt: "Saratoga Spa State Park waterfall nature photography session",
     category: "nature",
     width: 800,
     height: 1067
@@ -89,7 +89,7 @@ export const galleryImages: Image[] = [
   {
     id: "img8",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2712(1)_result_result.webp",
-    alt: "People at a formal gala event",
+    alt: "Saratoga Springs corporate event photographer at Canfield Casino gala",
     category: "events",
     width: 800,
     height: 1200
@@ -97,7 +97,7 @@ export const galleryImages: Image[] = [
   {
     id: "img9",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3736_result.webp",
-    alt: "Wedding rings close-up",
+    alt: "Saratoga Springs wedding ring photography macro detail shots",
     category: "weddings",
     width: 800,
     height: 1200
@@ -105,7 +105,7 @@ export const galleryImages: Image[] = [
   {
     id: "img10",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3785_result.webp",
-    alt: "Studio portrait with artistic lighting",
+    alt: "Studio portrait photographer Saratoga Springs NY - artistic lighting session",
     category: "portraits",
     width: 800,
     height: 1067
@@ -113,7 +113,7 @@ export const galleryImages: Image[] = [
   {
     id: "img11",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3810_result_result.webp",
-    alt: "Alpine lake with mountain reflections",
+    alt: "Lake George alpine photography near Saratoga Springs with mountain reflections",
     category: "nature",
     width: 800,
     height: 1200
@@ -121,7 +121,7 @@ export const galleryImages: Image[] = [
   {
     id: "img12",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_3872_result_result.webp",
-    alt: "Corporate event with speakers",
+    alt: "Saratoga Springs business event photographer documenting corporate speakers",
     category: "events",
     width: 800,
     height: 1067
@@ -130,10 +130,58 @@ export const galleryImages: Image[] = [
 
 export const aboutInfo = {
   name: "Riley Morris",
-  title: "Professional Photographer",
+  title: "Saratoga Springs Professional Photographer",
   image: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/19c1b6ddb75920febefe6d85d27cf366fe3a3ebc/Riley.webp",
-  bio: "Can add information you want here.",
+  bio: "Professional photographer serving Saratoga Springs, NY and the greater Capital Region. Specializing in weddings, portraits, and events throughout Saratoga County.",
+  location: "Saratoga Springs, NY",
+  serviceArea: "Saratoga Springs, Ballston Spa, Clifton Park, Albany, Troy, Schenectady, Greenfield Center, West Milton, Glens Falls, South Glens Falls, Fort Edward, Hudson Falls, Greenwich, Stillwater",
+  specialties: [
+    "Saratoga Springs Wedding Photography",
+    "Congress Park Portrait Sessions", 
+    "Saratoga Race Course Events",
+    "SPAC Concert Photography",
+    "Adirondack Nature Photography"
+  ],
   achievements: [
-    "Can put information here or change. Maybe remove?",
+    "2+ years serving Saratoga Springs couples and families",
+    "Featured local photographer for Saratoga Springs events",
+    "Specialized in Capitol Region wedding venues"
+  ]
+};
+
+// SEO-optimized business schema data
+export const businessInfo = {
+  name: "Ryes Photography",
+  description: "Professional photography services in Saratoga Springs, NY specializing in weddings, portraits, and events",
+  address: {
+    locality: "Saratoga Springs",
+    region: "NY",
+    postalCode: "12866",
+    country: "US"
+  },
+  serviceArea: [
+    "Saratoga Springs, NY",
+    "Saratoga County, NY", 
+    "Capital Region, NY",
+    "Ballston Spa, NY",
+    "Clifton Park, NY",
+    "Greenfield Center, NY",
+    "West Milton, NY", 
+    "Glens Falls, NY",
+    "South Glens Falls, NY",
+    "Fort Edward, NY",
+    "Hudson Falls, NY",
+    "Greenwich, NY",
+    "Stillwater, NY",
+    "Albany, NY",
+    "Troy, NY",
+    "Schenectady, NY"
+  ],
+  services: [
+    "Wedding Photography Saratoga Springs",
+    "Portrait Photography Saratoga Springs", 
+    "Event Photography Saratoga Springs",
+    "Engagement Photography Saratoga Springs",
+    "Family Photography Saratoga Springs"
   ]
 };
