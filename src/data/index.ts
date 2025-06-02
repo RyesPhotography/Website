@@ -28,7 +28,7 @@ export const categories: Category[] = [
   { id: "nature", name: "Adirondack Nature" },
   { id: "events", name: "Local Events" }
 ];
-
+// 📸 PASTE NEW IMAGE URLs HERE - Add URL between the " " where it has src: below id: "img1"
 export const galleryImages: Image[] = [
   {
     id: "img1",
