@@ -4,6 +4,7 @@ import ProgressiveImage from './ProgressiveImage';
 
 const About: React.FC = () => {
   const [isInView, setIsInView] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,7 +42,10 @@ const About: React.FC = () => {
           {/* Photo */}
           <div className={`${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
             <div className="relative">
-              <div className="absolute inset-0 bg-amber-200 rounded-md transform translate-x-4 translate-y-4 -z-10"></div>
+              {/* Only show decorative background AFTER image loads */}
+              {imageLoaded && (
+                <div className="absolute inset-0 bg-amber-200 rounded-md transform translate-x-4 translate-y-4 -z-10"></div>
+              )}
               <div className="overflow-hidden rounded-md shadow-lg">
                 <ProgressiveImage
                   src={aboutInfo.image}
@@ -49,6 +53,7 @@ const About: React.FC = () => {
                   width={800}
                   height={1000}
                   className="w-full h-auto"
+                  onLoadComplete={() => setImageLoaded(true)}
                 />
               </div>
             </div>
