@@ -131,7 +131,7 @@ export const galleryImages: Image[] = [
 export const aboutInfo = {
   name: "Riley Morris",
   title: "Professional Photographer",
-  image: "https://www.dropbox.com/scl/fi/2bnusg3sywiri8x5f4b4i/Riley.webp?rlkey=3tshfsxjhxy3qijy45904gc93&dl=1",
+  image: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/19c1b6ddb75920febefe6d85d27cf366fe3a3ebc/Riley.webp",
   bio: "Can add information you want here.",
   achievements: [
     "Can put information here or change. Maybe remove?",
