@@ -1,5 +1,5 @@
 import { SlideImage, Image, Category } from '../types';
-
+// 📸 PASTE NEW IMAGE URLs HERE - Add URL between the " " where it has src: below id: "slide1"
 export const heroSlides: SlideImage[] = [
   {
     id: "slide1",
