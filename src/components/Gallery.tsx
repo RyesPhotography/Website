@@ -7,16 +7,39 @@ const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [filteredImages, setFilteredImages] = useState<Image[]>(galleryImages);
   const [isInView, setIsInView] = useState(false);
+  const [visibleImages, setVisibleImages] = useState<Image[]>([]);
+  const [loadedCount, setLoadedCount] = useState(0);
+  
+  // Load images in batches for smooth performance
+  const BATCH_SIZE = 4;
   
   // Filter images when category changes
   useEffect(() => {
+    let imagesToShow: Image[];
     if (activeCategory === 'all') {
-      setFilteredImages(galleryImages);
+      imagesToShow = galleryImages;
     } else {
-      setFilteredImages(galleryImages.filter(image => image.category === activeCategory));
+      imagesToShow = galleryImages.filter(image => image.category === activeCategory);
     }
+    
+    setFilteredImages(imagesToShow);
+    setLoadedCount(0);
+    setVisibleImages(imagesToShow.slice(0, BATCH_SIZE));
   }, [activeCategory]);
 
+  // Load more images as they come into view
+  useEffect(() => {
+    if (loadedCount < filteredImages.length && isInView) {
+      const timer = setTimeout(() => {
+        const nextBatch = filteredImages.slice(0, Math.min(filteredImages.length, visibleImages.length + BATCH_SIZE));
+        setVisibleImages(nextBatch);
+        setLoadedCount(nextBatch.length);
+      }, 200);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [filteredImages, loadedCount, visibleImages.length, isInView]);
+  
   // Detect when gallery section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,6 +62,24 @@ const Gallery: React.FC = () => {
       }
     };
   }, []);
+
+  // Load more images when scrolling near bottom
+  useEffect(() => {
+    const handleScroll = () => {
+      if (visibleImages.length >= filteredImages.length) return;
+      
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const documentHeight = document.documentElement.offsetHeight;
+      
+      if (scrollPosition > documentHeight - 1000) {
+        const nextBatch = filteredImages.slice(0, Math.min(filteredImages.length, visibleImages.length + BATCH_SIZE));
+        setVisibleImages(nextBatch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visibleImages, filteredImages]);
 
   return (
     <section id="gallery" className="py-20 px-4 max-w-7xl mx-auto">
@@ -68,13 +109,16 @@ const Gallery: React.FC = () => {
 
       {/* Gallery Grid */}
       <div className="image-gallery">
-        {filteredImages.map((image, index) => (
+        {visibleImages.map((image, index) => (
           <div 
             key={image.id}
             className={`overflow-hidden rounded-md transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg ${
               isInView ? 'animate-fade-in' : 'opacity-0'
             }`}
-            style={{ animationDelay: `${index * 100}ms` }}
+            style={{ 
+              animationDelay: `${(index % BATCH_SIZE) * 100}ms`,
+              willChange: 'transform'
+            }}
           >
             <ProgressiveImage
               src={image.src}
@@ -86,6 +130,13 @@ const Gallery: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Loading indicator */}
+      {visibleImages.length < filteredImages.length && isInView && (
+        <div className="text-center mt-8">
+          <div className="animate-spin w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full mx-auto"></div>
+        </div>
+      )}
     </section>
   );
 };
