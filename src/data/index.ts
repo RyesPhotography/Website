@@ -40,7 +40,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img2",
-    src: "https://images.pexels.com/photos/936554/pexels-photo-936554.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2575(1)_result.webp",
     alt: "Portrait of a woman with flowers in her hair",
     category: "portraits",
     width: 800,
