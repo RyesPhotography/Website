@@ -4,20 +4,20 @@ export const heroSlides: SlideImage[] = [
   {
     id: "slide1",
     src: "https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Saratoga Springs wedding photographer capturing couple's romantic forest ceremony",
-    title: "Capturing Saratoga Springs' Beautiful Moments"
+    alt: "Wedding couple kissing under a forest canopy",
+    title: "Capturing Life's Beautiful Moments"
   },
   {
     id: "slide2",
     src: "https://images.pexels.com/photos/4066041/pexels-photo-4066041.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Professional portrait photography with dramatic lighting in Saratoga Springs NY",
-    title: "Portraits That Tell Your Saratoga Story"
+    alt: "Portrait of a woman with dramatic lighting",
+    title: "Portraits That Tell Your Story"
   },
   {
     id: "slide3",
     src: "https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg?auto=compress&cs=tinysrgb&w=1800",
-    alt: "Saratoga Springs landscape photography capturing Adirondack mountain sunset",
-    title: "Saratoga's Natural Beauty Captured"
+    alt: "Breathtaking landscape of mountains at sunset",
+    title: "Nature's Magnificent Beauty"
   }
 ];
 
