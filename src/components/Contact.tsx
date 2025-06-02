@@ -76,12 +76,18 @@ const Contact: React.FC = () => {
       setIsSubmitting(true);
       
       try {
+        // SEO: Contact form for Saratoga Springs wedding photographer bookings
         const response = await fetch('https://hook.us2.make.com/m5kag8tsd1behu5vwazvqxxbhm63v29n', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify({
+            ...formData,
+            // SEO: Track contact source for Saratoga Springs photography inquiries
+            source: 'Website Contact Form - Saratoga Springs Photography',
+            serviceArea: 'Saratoga Springs NY photographer contact'
+          })
         });
 
         if (response.ok) {
@@ -104,17 +110,39 @@ const Contact: React.FC = () => {
     }
   };
 
+  // SEO: Contact information for Saratoga Springs wedding portrait photographer
   const contactInfo = [
-    { icon: <Mail size={20} />, text: "ryes.photographyy@gmail.com" },
-    { icon: <Phone size={20} />, text: "+1 (518) 502-3655" },
-    { icon: <MapPin size={20} />, text: "Saratoga Springs, N.Y." }
+    { 
+      icon: <Mail size={20} />, 
+      text: "ryes.photographyy@gmail.com",
+      ariaLabel: "Email Saratoga Springs photographer for wedding and portrait bookings"
+    },
+    { 
+      icon: <Phone size={20} />, 
+      text: "+1 (518) 502-3655",
+      ariaLabel: "Call Saratoga Springs photographer for consultation"
+    },
+    { 
+      icon: <MapPin size={20} />, 
+      text: "Saratoga Springs, N.Y.",
+      ariaLabel: "Saratoga Springs NY photographer location and service area"
+    }
   ];
 
   return (
-    <section id="contact" className="py-20 px-4">
+    <section 
+      id="contact" 
+      className="py-20 px-4"
+      itemScope 
+      itemType="https://schema.org/ContactPage"
+      aria-label="Contact Saratoga Springs photographer for wedding and portrait sessions"
+    >
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-12 ${isInView ? 'animate-slide-up' : 'opacity-0'}`}>
-          <h2 className="text-3xl md:text-4xl font-playfair font-semibold mb-3 text-neutral-800">
+          <h2 
+            className="text-3xl md:text-4xl font-playfair font-semibold mb-3 text-neutral-800"
+            itemProp="headline"
+          >
             Get In Touch
           </h2>
           <p className="text-neutral-600 max-w-2xl mx-auto">
@@ -125,7 +153,7 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className={`${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
-            <div className="bg-neutral-100 p-8 rounded-lg h-full">
+            <div className="bg-neutral-100 p-8 rounded-lg h-full" itemScope itemType="https://schema.org/LocalBusiness">
               <h3 className="text-2xl font-playfair font-semibold mb-6 text-neutral-800">
                 Contact Information
               </h3>
@@ -137,6 +165,8 @@ const Contact: React.FC = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="btn w-full flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white transition-colors"
+                  aria-label="Schedule photography consultation appointment in Saratoga Springs"
+                  title="Book Saratoga Springs photographer consultation"
                 >
                   <Calendar size={18} className="mr-2" />
                   Schedule an Appointment
@@ -145,11 +175,17 @@ const Contact: React.FC = () => {
               
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-center">
+                  <div key={index} className="flex items-center" itemProp="contactPoint" itemScope itemType="https://schema.org/ContactPoint">
                     <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mr-4">
                       {item.icon}
                     </div>
-                    <span className="text-neutral-700">{item.text}</span>
+                    <span 
+                      className="text-neutral-700"
+                      itemProp="contactOption"
+                      aria-label={item.ariaLabel}
+                    >
+                      {item.text}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -171,7 +207,13 @@ const Contact: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-white rounded-lg p-8 shadow-sm">
+              <form 
+                onSubmit={handleSubmit} 
+                className="bg-white rounded-lg p-8 shadow-sm"
+                itemScope 
+                itemType="https://schema.org/ContactForm"
+                aria-label="Contact form for Saratoga Springs photographer bookings"
+              >
                 <div className="mb-6">
                   <label htmlFor="name" className="block text-neutral-700 font-medium mb-2">
                     Your Name
@@ -184,6 +226,8 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     className={`contact-input ${errors.name ? 'border-red-300 focus:ring-red-200 focus:border-red-400' : ''}`}
                     placeholder="John Doe"
+                    aria-label="Enter your name for photography inquiry"
+                    autoComplete="name"
                   />
                   {errors.name && (
                     <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -202,6 +246,8 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     className={`contact-input ${errors.email ? 'border-red-300 focus:ring-red-200 focus:border-red-400' : ''}`}
                     placeholder="your@email.com"
+                    aria-label="Enter email address for photography consultation follow-up"
+                    autoComplete="email"
                   />
                   {errors.email && (
                     <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -220,6 +266,7 @@ const Contact: React.FC = () => {
                     rows={5}
                     className={`contact-input resize-none ${errors.message ? 'border-red-300 focus:ring-red-200 focus:border-red-400' : ''}`}
                     placeholder="Tell me about your project..."
+                    aria-label="Describe your photography needs and project details"
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -230,11 +277,12 @@ const Contact: React.FC = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className="btn w-full flex items-center justify-center"
+                  aria-label="Send photography inquiry to Saratoga Springs photographer"
                 >
                   {isSubmitting ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white\" xmlns="http://www.w3.org/2000/svg\" fill="none\" viewBox="0 0 24 24">
-                        <circle className="opacity-25\" cx="12\" cy="12\" r="10\" stroke="currentColor\" strokeWidth="4"></circle>
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                       Sending...
