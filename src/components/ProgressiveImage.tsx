@@ -6,6 +6,7 @@ interface ProgressiveImageProps {
   width: number;
   height: number;
   className?: string;
+  onLoadComplete?: () => void;
 }
 
 const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ 
@@ -13,7 +14,8 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   alt, 
   width, 
   height, 
-  className = '' 
+  className = '',
+  onLoadComplete
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
@@ -25,6 +27,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
     img.onload = () => {
       setImageSrc(src);
       setIsLoaded(true);
+      onLoadComplete?.();
     };
     
     return () => {
@@ -53,7 +56,10 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
           outline: 'none',
           border: 'none'
         }}
-        onLoad={() => setIsLoaded(true)}
+        onLoad={() => {
+          setIsLoaded(true);
+          onLoadComplete?.();
+        }}
       />
     </div>
   );
