@@ -56,7 +56,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img4",
-    src: "https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2643(1)_result_result.webp",
     alt: "People dancing at a concert event",
     category: "events",
     width: 800,
