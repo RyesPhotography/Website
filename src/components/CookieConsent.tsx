@@ -101,42 +101,45 @@ const CookieConsent: React.FC = () => {
   return (
     <>
       {/* Cookie Banner */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-neutral-200 shadow-lg z-50 p-4 md:p-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div className="flex items-start gap-3 flex-1">
-              <Cookie className="h-6 w-6 text-amber-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-neutral-800 mb-1">
-                  We use cookies
-                </h3>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
-                  By clicking "Accept All", you consent to our use of cookies.
-                </p>
-              </div>
+      <div className="fixed bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 z-50">
+        <div className="bg-white/95 backdrop-blur-md border border-neutral-200/50 rounded-2xl shadow-2xl p-6 max-w-md ml-auto">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Cookie className="h-6 w-6 text-white" />
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-              <button
-                onClick={() => setShowSettings(true)}
-                className="px-4 py-2 text-sm border border-neutral-300 rounded hover:bg-neutral-50 transition-colors"
-              >
-                <Settings size={16} className="inline mr-1" />
-                Settings
-              </button>
-              <button
-                onClick={handleRejectNonEssential}
-                className="px-4 py-2 text-sm border border-neutral-300 rounded hover:bg-neutral-50 transition-colors"
-              >
-                Reject All
-              </button>
-              <button
-                onClick={handleAcceptAll}
-                className="px-4 py-2 text-sm bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors"
-              >
-                Accept All
-              </button>
+            <div className="flex-1">
+              <h3 className="font-playfair font-semibold text-neutral-800 text-lg mb-2">
+                🍪 We use cookies
+              </h3>
+              <p className="text-sm text-neutral-600 leading-relaxed mb-4">
+                We use cookies to enhance your experience and analyze our traffic. Choose your preferences below.
+              </p>
+              
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={handleAcceptAll}
+                  className="w-full px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  Accept All
+                </button>
+                
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setShowSettings(true)}
+                    className="flex-1 px-3 py-2 text-sm border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors flex items-center justify-center gap-1"
+                  >
+                    <Settings size={14} />
+                    Settings
+                  </button>
+                  <button
+                    onClick={handleRejectNonEssential}
+                    className="flex-1 px-3 py-2 text-sm border border-neutral-300 rounded-lg hover:bg-neutral-50 transition-colors"
+                  >
+                    Reject
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
