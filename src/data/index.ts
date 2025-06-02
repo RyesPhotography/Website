@@ -64,7 +64,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img5",
-    src: "https://images.pexels.com/photos/1244066/pexels-photo-1244066.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2655(1)_result_result.webp",
     alt: "Bride and groom embracing",
     category: "weddings",
     width: 800,
