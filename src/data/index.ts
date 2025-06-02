@@ -48,7 +48,7 @@ export const galleryImages: Image[] = [
   },
   {
     id: "img3",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2584(1)_result.webp"
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2584(1)_result.webp",
     alt: "Mountain landscape at sunset",
     category: "nature",
     width: 800,
