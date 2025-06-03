@@ -28,14 +28,11 @@ const About: React.FC = () => {
     };
   }, []);
 
-  // Load image and track when it's ready
-  useEffect(() => {
-    const img = new Image();
-    img.src = aboutInfo.image;
-    img.onload = () => {
+  const handleImageLoad = () => {
+    setTimeout(() => {
       setImageLoaded(true);
-    };
-  }, []);
+    }, 300);
+  };
 
   return (
     <section id="about" className="py-20 px-4 bg-neutral-100">
@@ -46,14 +43,17 @@ const About: React.FC = () => {
           </h2>
           <div className="w-20 h-1 bg-amber-500 mx-auto mb-8"></div>
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Photo */}
           <div className={`${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
             <div className="relative">
-              {/* Only show decorative background AFTER image loads */}
-              {imageLoaded && (
-                <div className="absolute inset-0 bg-amber-200 rounded-md transform translate-x-4 translate-y-4 -z-10"></div>
-              )}
+              {/* Decorative background with smooth transition */}
+              <div 
+                className={`absolute inset-0 bg-amber-200 rounded-md transform translate-x-4 translate-y-4 -z-10 transition-opacity duration-500 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+              ></div>
               <div className="overflow-hidden rounded-md shadow-lg">
                 <ProgressiveImage
                   src={aboutInfo.image}
@@ -61,6 +61,7 @@ const About: React.FC = () => {
                   width={800}
                   height={1000}
                   className="w-full h-auto"
+                  onLoadComplete={handleImageLoad}
                 />
               </div>
             </div>
