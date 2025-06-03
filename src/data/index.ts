@@ -3,7 +3,7 @@ import { SlideImage, Image, Category } from '../types';
 export const heroSlides: SlideImage[] = [
   {
     id: "slide1",
-    src: "https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1800",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/birdintree.webp",
     alt: "Wedding couple kissing under a forest canopy",
     title: "Capturing Life's Beautiful Moments"
   },
