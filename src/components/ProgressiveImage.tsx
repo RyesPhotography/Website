@@ -19,6 +19,9 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
+  
+  // Calculate aspect ratio for consistent layout
+  const aspectRatio = (height / width) * 100;
 
   useEffect(() => {
     const img = new Image();
@@ -33,15 +36,20 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
     return () => {
       img.onload = null;
     };
-  }, [src]);
+  }, [src, onLoadComplete]);
 
   return (
-    <div className="relative overflow-hidden">
+    <div 
+      className="relative overflow-hidden"
+      style={{ 
+        paddingBottom: `${aspectRatio}%`,
+        height: 0
+      }}
+    >
       {/* Loading skeleton */}
       {!isLoaded && (
         <div 
           className="absolute inset-0 bg-neutral-200 animate-pulse"
-          style={{ width, height }}
         />
       )}
       
@@ -51,15 +59,16 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
         width={width}
         height={height}
         loading="lazy"
-        className={`progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className} focus:outline-none`}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        } ${className}`}
         style={{ 
-          outline: 'none',
-          border: 'none'
+          outline: 'none !important',
+          border: 'none !important',
+          boxShadow: 'none !important'
         }}
-        onLoad={() => {
-          setIsLoaded(true);
-          onLoadComplete?.();
-        }}
+        onFocus={(e) => e.target.blur()}
+        tabIndex={-1}
       />
     </div>
   );
