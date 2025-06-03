@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
       ))}
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 pt-32">
         <div className="text-center slide-fade-in">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-playfair font-semibold text-white mb-4 leading-tight">
             {heroSlides[currentSlide].title}
