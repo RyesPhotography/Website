@@ -48,13 +48,7 @@ const About: React.FC = () => {
           {/* Photo */}
           <div className={`${isInView ? 'animate-fade-in' : 'opacity-0'}`}>
             <div className="relative">
-              {/* Decorative background with smooth transition */}
-              <div 
-                className={`absolute inset-0 bg-amber-200 rounded-md transform translate-x-4 translate-y-4 -z-10 transition-opacity duration-500 ${
-                  imageLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-              ></div>
-              <div className="overflow-hidden rounded-md shadow-lg">
+              <div className="overflow-hidden rounded-md shadow-lg relative z-10">
                 <ProgressiveImage
                   src={aboutInfo.image}
                   alt={aboutInfo.name}
