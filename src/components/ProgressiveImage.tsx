@@ -23,13 +23,13 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
   useEffect(() => {
     const img = new Image();
     img.src = src;
-
+    
     img.onload = () => {
       setImageSrc(src);
       setIsLoaded(true);
       onLoadComplete?.();
     };
-
+    
     return () => {
       img.onload = null;
     };
@@ -44,22 +44,21 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
           style={{ width, height }}
         />
       )}
-
+      
       <img
         src={imageSrc}
         alt={alt}
         width={width}
         height={height}
         loading="lazy"
-        className={`progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className} focus:outline-none`}
+        className={`${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 ${className}`}
         style={{ 
-          outline: 'none',
-          border: 'none'
+          outline: 'none !important',
+          border: 'none !important',
+          boxShadow: 'none !important'
         }}
-        onLoad={() => {
-          setIsLoaded(true);
-          onLoadComplete?.();
-        }}
+        onFocus={(e) => e.target.blur()}
+        tabIndex={-1}
       />
     </div>
   );
