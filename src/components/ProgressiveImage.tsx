@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 interface ProgressiveImageProps {
   src: string;
   alt: string;
@@ -7,6 +8,7 @@ interface ProgressiveImageProps {
   className?: string;
   onLoadComplete?: () => void;
 }
+
 const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ 
   src, 
   alt, 
@@ -17,6 +19,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
+
   useEffect(() => {
     const img = new Image();
     img.src = src;
@@ -31,6 +34,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
       img.onload = null;
     };
   }, [src]);
+
   return (
     <div className="relative overflow-hidden">
       {/* Loading skeleton */}
@@ -47,7 +51,7 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
         width={width}
         height={height}
         loading="lazy"
-        className={progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className} focus:outline-none}
+        className={`progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className} focus:outline-none`}
         style={{ 
           outline: 'none',
           border: 'none'
@@ -60,4 +64,5 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
     </div>
   );
 };
+
 export default ProgressiveImage;
