@@ -1,27 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --font-playfair: 'Playfair Display', serif;
   --font-inter: 'Inter', sans-serif;
   scroll-behavior: smooth;
 }
-
 body {
   font-family: var(--font-inter);
   @apply text-neutral-800 bg-neutral-50 overflow-x-hidden;
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-playfair);
   @apply font-medium leading-tight;
 }
-
 .slide-fade-in {
   animation: slideFadeIn 0.7s ease-in-out;
 }
-
 @keyframes slideFadeIn {
   from {
     opacity: 0;
@@ -32,31 +27,25 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
   }
 }
-
 /* Custom scrollbar - hidden on mobile */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 @media (max-width: 767px) {
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
   }
 }
-
 ::-webkit-scrollbar-track {
   @apply bg-neutral-200;
 }
-
 ::-webkit-scrollbar-thumb {
   @apply bg-neutral-400 rounded-full;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-neutral-500;
 }
-
 /* Mobile-optimized image gallery */
 .image-gallery {
   display: grid;
@@ -64,14 +53,12 @@ h1, h2, h3, h4, h5, h6 {
   grid-gap: 12px;
   padding: 0 16px;
 }
-
 @media (min-width: 480px) {
   .image-gallery {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 16px;
   }
 }
-
 @media (min-width: 768px) {
   .image-gallery {
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -79,59 +66,49 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 24px;
   }
 }
-
 .navbar-fixed {
   @apply bg-white bg-opacity-90 backdrop-blur-md shadow-sm;
 }
-
 /* Mobile-optimized form inputs */
 .contact-input {
   @apply w-full px-4 py-3 border border-neutral-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-200 focus:border-amber-400 transition-all;
   font-size: 16px; /* Prevents zoom on iOS */
   min-height: 44px; /* Touch target minimum */
 }
-
 @media (max-width: 767px) {
   .contact-input {
     @apply py-4; /* Larger touch targets on mobile */
   }
 }
-
 /* Mobile-optimized buttons */
 .btn {
   @apply px-6 py-3 bg-amber-600 text-white rounded hover:bg-amber-700 transition-colors font-medium text-sm tracking-wide;
   min-height: 44px; /* Touch target minimum */
   min-width: 44px;
 }
-
 @media (max-width: 767px) {
   .btn {
     @apply py-4 px-8 text-base; /* Larger on mobile */
     min-height: 48px;
   }
 }
-
 /* Mobile-optimized category buttons */
 .category-button {
   @apply px-4 py-2 rounded-full text-sm transition-all;
   min-height: 40px; /* Touch target */
 }
-
 @media (max-width: 767px) {
   .category-button {
     @apply px-6 py-3 text-base; /* Larger on mobile */
     min-height: 44px;
   }
 }
-
 .category-button.active {
   @apply bg-amber-100 text-amber-800;
 }
-
 .category-button:not(.active) {
   @apply bg-neutral-200 text-neutral-700 hover:bg-neutral-300;
 }
-
 /* Mobile touch improvements */
 @media (max-width: 767px) {
   /* Ensure all clickable elements have proper touch targets */
@@ -165,22 +142,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: clamp(1.25rem, 5vw, 2rem);
   }
 }
-
 /* Progressive image loading */
 .progressive-image {
   transition: opacity 0.3s ease-in-out;
 }
-
 .progressive-image.loading {
-  opacity: 0.3;
-  filter: blur(10px);
+  opacity: 0;
 }
-
 .progressive-image.loaded {
   opacity: 1;
-  filter: blur(0);
 }
-
 /* Mobile viewport fixes */
 @supports (-webkit-touch-callout: none) {
   /* iOS Safari specific fixes */
