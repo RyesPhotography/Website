@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 interface ProgressiveImageProps {
   src: string;
   alt: string;
@@ -8,7 +7,6 @@ interface ProgressiveImageProps {
   className?: string;
   onLoadComplete?: () => void;
 }
-
 const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ 
   src, 
   alt, 
@@ -19,59 +17,47 @@ const ProgressiveImage: React.FC<ProgressiveImageProps> = ({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
-  
-  // Calculate aspect ratio for consistent layout
-  const aspectRatio = (height / width) * 100;
-
   useEffect(() => {
     const img = new Image();
     img.src = src;
-    
+
     img.onload = () => {
       setImageSrc(src);
       setIsLoaded(true);
       onLoadComplete?.();
     };
-    
+
     return () => {
       img.onload = null;
     };
-  }, [src, onLoadComplete]);
-
+  }, [src]);
   return (
-    <div 
-      className="relative overflow-hidden"
-      style={{ 
-        paddingBottom: `${aspectRatio}%`,
-        height: 0
-      }}
-    >
+    <div className="relative overflow-hidden">
       {/* Loading skeleton */}
       {!isLoaded && (
         <div 
           className="absolute inset-0 bg-neutral-200 animate-pulse"
+          style={{ width, height }}
         />
       )}
-      
+
       <img
         src={imageSrc}
         alt={alt}
         width={width}
         height={height}
         loading="lazy"
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
+        className={progressive-image ${isLoaded ? 'loaded' : 'loading'} ${className} focus:outline-none}
         style={{ 
-          outline: 'none !important',
-          border: 'none !important',
-          boxShadow: 'none !important'
+          outline: 'none',
+          border: 'none'
         }}
-        onFocus={(e) => e.target.blur()}
-        tabIndex={-1}
+        onLoad={() => {
+          setIsLoaded(true);
+          onLoadComplete?.();
+        }}
       />
     </div>
   );
 };
-
 export default ProgressiveImage;
