@@ -9,7 +9,7 @@ export const heroSlides: SlideImage[] = [
   },
   {
     id: "slide2",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/flower.webp",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/sunflowerbridge.webp",
     alt: "Portrait of a woman with dramatic lighting",
     title: "Portraits That Tell Your Story"
   },
