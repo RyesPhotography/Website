@@ -13,16 +13,6 @@ const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleScrollDown = () => {
-    const gallerySection = document.getElementById('gallery');
-    if (gallerySection) {
-      const yOffset = -80;
-      const y = gallerySection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
-      window.scrollTo({top: y, behavior: 'smooth'});
-    }
-  };
-
   // Preload images and track loading state
   useEffect(() => {
     heroSlides.forEach((slide, index) => {
@@ -72,12 +62,6 @@ const Hero: React.FC = () => {
           <p className="text-white text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
             Fine art photography capturing life's most precious moments
           </p>
-          <button 
-            onClick={handleScrollDown}
-            className="btn bg-white hover:bg-amber-50 text-amber-800 border-0 mt-4 focus:outline-none"
-          >
-            View Gallery
-          </button>
         </div>
       </div>
 
@@ -94,15 +78,6 @@ const Hero: React.FC = () => {
           />
         ))}
       </div>
-
-      {/* Scroll Down Indicator */}
-      <button
-        onClick={handleScrollDown}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10 hidden md:block focus:outline-none"
-        aria-label="Scroll down"
-      >
-        <ChevronDown size={32} />
-      </button>
     </section>
   );
 };
