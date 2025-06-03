@@ -15,7 +15,7 @@ export const heroSlides: SlideImage[] = [
   },
   {
     id: "slide3",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/sunflowerbridge.webp",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/birdintree.webp",
     alt: "Breathtaking landscape of mountains at sunset",
     title: "Nature's Magnificent Beauty"
   }
