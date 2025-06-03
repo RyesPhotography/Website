@@ -1,6 +1,7 @@
 import { SlideImage, Image, Category } from '../types';
 
-export const heroSlides: SlideImage[] = [
+export const heroSlides: SlideImage[] = [ // Add image here under id: in src: add image url between " "
+
   {
     id: "slide1",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/flower.webp",
@@ -29,7 +30,7 @@ export const categories: Category[] = [
   { id: "events", name: "Events" }
 ];
 
-export const galleryImages: Image[] = [
+export const galleryImages: Image[] = [ // Add image here under id: in src: add image url between " "
   {
     id: "img1",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/IMG_2501(1)_result.webp",
@@ -128,7 +129,7 @@ export const galleryImages: Image[] = [
   }
 ];
 
-export const aboutInfo = {
+export const aboutInfo = { // Add image here under title: in image: add image url between " "
   name: "Riley Morris",
   title: "Professional Photographer",
   image: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/19c1b6ddb75920febefe6d85d27cf366fe3a3ebc/Riley.webp",
