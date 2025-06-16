@@ -19,7 +19,7 @@ export const heroSlides: SlideImage[] = [ // Add image here under id: in src: ad
   {
     id: "slide3",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/birdintree.webp",
-    srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/birdintree-mobile.webp",
+    srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/mobile%20bird_result.webp",
     alt: "Breathtaking landscape of mountains at sunset",
     title: "Nature's Magnificent Beauty"
   }
