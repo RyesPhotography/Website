@@ -4,7 +4,7 @@ export const heroSlides: SlideImage[] = [ // Add image here under id: in src: ad
 
   {
     id: "slide1",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/flower.webp",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20flower_result.webp",
     alt: "Wedding couple kissing under a forest canopy",
     title: "Capturing Life's Beautiful Moments"
   },
