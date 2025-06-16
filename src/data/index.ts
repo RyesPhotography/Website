@@ -4,19 +4,22 @@ export const heroSlides: SlideImage[] = [ // Add image here under id: in src: ad
 
   {
     id: "slide1",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20flower_result.webp",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/flower.webp",
+    srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/flower-mobile.webp",
     alt: "Wedding couple kissing under a forest canopy",
     title: "Capturing Life's Beautiful Moments"
   },
   {
     id: "slide2",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20Sunflowers_result.webp",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/sunflowerbridge.webp",
+    srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/Mobile%20Sunflowers_result.webp",
     alt: "Portrait of a woman with dramatic lighting",
     title: "Portraits That Tell Your Story"
   },
   {
     id: "slide3",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20Bird_result.webp",
+    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/birdintree.webp",
+    srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/birdintree-mobile.webp",
     alt: "Breathtaking landscape of mountains at sunset",
     title: "Nature's Magnificent Beauty"
   }
