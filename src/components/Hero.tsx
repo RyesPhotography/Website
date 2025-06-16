@@ -5,6 +5,19 @@ import { heroSlides } from '../data';
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(heroSlides.length).fill(false));
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if screen is mobile size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -13,20 +26,40 @@ const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Preload images and track loading state
+  // Preload both desktop and mobile images
   useEffect(() => {
     heroSlides.forEach((slide, index) => {
-      const img = new Image();
-      img.src = slide.src;
-      img.onload = () => {
-        setImagesLoaded(prev => {
-          const newState = [...prev];
-          newState[index] = true;
-          return newState;
-        });
+      const desktopImg = new Image();
+      const mobileImg = new Image();
+      
+      let loadedCount = 0;
+      const checkBothLoaded = () => {
+        loadedCount++;
+        if (loadedCount === 2) {
+          setImagesLoaded(prev => {
+            const newState = [...prev];
+            newState[index] = true;
+            return newState;
+          });
+        }
       };
+
+      desktopImg.src = slide.src;
+      desktopImg.onload = checkBothLoaded;
+      
+      if (slide.srcMobile) {
+        mobileImg.src = slide.srcMobile;
+        mobileImg.onload = checkBothLoaded;
+      } else {
+        checkBothLoaded(); // If no mobile version, just count desktop as loaded
+      }
     });
   }, []);
+
+  // Get the appropriate image source based on screen size
+  const getImageSrc = (slide: any) => {
+    return isMobile && slide.srcMobile ? slide.srcMobile : slide.src;
+  };
 
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
@@ -45,9 +78,10 @@ const Hero: React.FC = () => {
             index === currentSlide && imagesLoaded[index] ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${slide.src})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${getImageSrc(slide)})`,
+            backgroundSize: isMobile ? 'cover' : 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
           }}
           aria-hidden={index !== currentSlide}
         />
