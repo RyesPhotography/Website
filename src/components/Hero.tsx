@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero" className="relative h-screen w-full overflow-hidden">
+    <section id="hero" className="relative h-[70vh] w-full overflow-hidden">
       {/* Loading Skeleton - Only show if current slide isn't loaded */}
       {!imagesLoaded[currentSlide] && (
         <div className="absolute inset-0 bg-neutral-200 animate-pulse">
