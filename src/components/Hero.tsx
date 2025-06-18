@@ -77,18 +77,24 @@ const Hero: React.FC = () => {
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
             index === currentSlide && imagesLoaded[index] ? 'opacity-100' : 'opacity-0'
           }`}
-         style={{
-  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${getImageSrc(slide)})`,
-  backgroundSize: slide.backgroundSize || 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat'
-}}
-          aria-hidden={index !== currentSlide}
-        />
+        >
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
+          
+          {/* Actual image element instead of background */}
+          <img
+            src={getImageSrc(slide)}
+            alt={slide.alt}
+            className="w-full h-full object-cover"
+            style={{
+              objectPosition: slide.id === 'slide1' ? 'center 35%' : 'center center'
+            }}
+          />
+        </div>
       ))}
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 pt-32">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-20 pt-32">
         <div className="text-center slide-fade-in">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-playfair font-semibold text-white mb-4 leading-tight">
             {heroSlides[currentSlide].title}
@@ -100,7 +106,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         {heroSlides.map((_, index) => (
           <button
             key={index}
