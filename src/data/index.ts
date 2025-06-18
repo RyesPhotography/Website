@@ -2,14 +2,14 @@ import { SlideImage, Image, Category } from '../types';
 
 export const heroSlides: SlideImage[] = [ // Add image here under id: in src: add image url between " "
 
-  {
-    id: "slide1",
-    src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20flower_result.webp",
-    srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/Mobile%20flower_result.webp",
-    alt: "Wedding couple kissing under a forest canopy",
-    title: "Capturing Life's Beautiful Moments",
-    backgroundPosition: "center 40%" // This focuses on the flower center, 40% down from top
-  },
+{
+  id: "slide1",
+  src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20flower_result.webp",
+  srcMobile: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/Mobile%20flower_result.webp",
+  alt: "Wedding couple kissing under a forest canopy",
+  title: "Capturing Life's Beautiful Moments",
+  backgroundSize: "contain"
+},
   {
     id: "slide2",
     src: "https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20Sunflowers_result.webp",
