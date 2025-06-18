@@ -79,8 +79,8 @@ const Hero: React.FC = () => {
           }`}
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${getImageSrc(slide)})`,
-            backgroundSize: slide.backgroundSize || 'cover',
-            backgroundPosition: slide.backgroundPosition || 'center',
+            backgroundSize: 'cover',
+            backgroundPosition: slide.backgroundPosition || 'center center',
             backgroundRepeat: 'no-repeat'
           }}
           aria-hidden={index !== currentSlide}
