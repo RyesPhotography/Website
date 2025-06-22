@@ -17,8 +17,9 @@
     <link rel="preconnect" href="https://images.pexels.com" crossorigin>
     
     <!-- CRITICAL FIX: Single LCP image preload with fetchpriority -->
-    <!-- Replace multiple competing preloads with ONE priority LCP image -->
-    <link rel="preload" as="image" href="https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1200" fetchpriority="high" crossorigin>
+    <!-- Preload the actual first slide that users see -->
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/Mobile%20flower_result.webp" fetchpriority="high" crossorigin media="(max-width: 768px)">
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20flower_result.webp" fetchpriority="high" crossorigin media="(min-width: 769px)">
     
     <!-- OPTIMIZED: Font loading with font-display swap for faster rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
