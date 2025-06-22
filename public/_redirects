@@ -1,7 +1,0 @@
-# Proxy GitHub images with long cache
-/img/hd-flower.webp https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20flower_result.webp 200
-/img/mobile-flower.webp https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/Mobile%20flower_result.webp 200
-/img/hd-sunflowers.webp https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20Sunflowers_result.webp 200
-/img/mobile-sunflowers.webp https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/Mobile%20Sunflowers_result.webp 200
-/img/hd-bird.webp https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/HD%20Bird_result.webp 200
-/img/mobile-bird.webp https://raw.githubusercontent.com/RyesPhotography/RyesPhotography-Images/refs/heads/master/mobile%20bird_result.webp 200
