@@ -19,3 +19,7 @@
 # Don't cache the main HTML
 /
   Cache-Control: public, max-age=0, must-revalidate
+
+  # Cache proxied images for 1 year
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
