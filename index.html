@@ -11,24 +11,29 @@
     <meta property="og:description" content="Capturing beautiful moments and creating lasting memories through professional photography." />
     <meta property="og:type" content="website" />
     
-    <!-- Preconnect for faster external requests -->
+    <!-- OPTIMIZED: Preconnect for faster external requests -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.pexels.com" crossorigin>
-    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
     
-    <!-- Preload critical hero images for instant display -->
-    <link rel="preload" as="image" href="https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1800" crossorigin>
-    <link rel="preload" as="image" href="https://images.pexels.com/photos/4066041/pexels-photo-4066041.jpeg?auto=compress&cs=tinysrgb&w=1800" crossorigin>
-    <link rel="preload" as="image" href="https://images.pexels.com/photos/1446076/pexels-photo-1446076.jpeg?auto=compress&cs=tinysrgb&w=1800" crossorigin>
+    <!-- CRITICAL FIX: Single LCP image preload with fetchpriority -->
+    <!-- Replace multiple competing preloads with ONE priority LCP image -->
+    <link rel="preload" as="image" href="https://images.pexels.com/photos/2403568/pexels-photo-2403568.jpeg?auto=compress&cs=tinysrgb&w=1200" fetchpriority="high" crossorigin>
     
-    <!-- Fonts -->
+    <!-- OPTIMIZED: Font loading with font-display swap for faster rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ADDED: Critical CSS inlining hint -->
+    <style>
+      /* Critical above-fold styles - prevents layout shift */
+      body { margin: 0; font-family: 'Inter', system-ui, sans-serif; }
+      #root { min-height: 100vh; }
+    </style>
     
     <title>ryes.photography | Professional Photography Portfolio</title>
     
-    <!-- Service Worker for image caching -->
-    <script>
+    <!-- OPTIMIZED: Service Worker with defer for non-blocking -->
+    <script defer>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
