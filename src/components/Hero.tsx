@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { heroSlides } from '../data';
 
 const Hero: React.FC = () => {
@@ -26,34 +25,47 @@ const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Preload both desktop and mobile images
+  // OPTIMIZED: Only preload non-LCP images after LCP loads
   useEffect(() => {
-    heroSlides.forEach((slide, index) => {
-      const desktopImg = new Image();
-      const mobileImg = new Image();
-      
-      let loadedCount = 0;
-      const checkBothLoaded = () => {
-        loadedCount++;
-        if (loadedCount === 2) {
-          setImagesLoaded(prev => {
-            const newState = [...prev];
-            newState[index] = true;
-            return newState;
-          });
-        }
-      };
-
-      desktopImg.src = slide.src;
-      desktopImg.onload = checkBothLoaded;
-      
-      if (slide.srcMobile) {
-        mobileImg.src = slide.srcMobile;
-        mobileImg.onload = checkBothLoaded;
-      } else {
-        checkBothLoaded(); // If no mobile version, just count desktop as loaded
-      }
+    // First slide (LCP) is already preloaded in HTML, so mark it as loaded immediately
+    setImagesLoaded(prev => {
+      const newState = [...prev];
+      newState[0] = true; // First slide is preloaded in HTML
+      return newState;
     });
+
+    // Lazy load other slides after a delay to not compete with LCP
+    const timer = setTimeout(() => {
+      heroSlides.slice(1).forEach((slide, index) => {
+        const actualIndex = index + 1; // +1 because we skip first slide
+        const desktopImg = new Image();
+        const mobileImg = new Image();
+        
+        let loadedCount = 0;
+        const checkBothLoaded = () => {
+          loadedCount++;
+          if (loadedCount === 2) {
+            setImagesLoaded(prev => {
+              const newState = [...prev];
+              newState[actualIndex] = true;
+              return newState;
+            });
+          }
+        };
+
+        desktopImg.src = slide.src;
+        desktopImg.onload = checkBothLoaded;
+        
+        if (slide.srcMobile) {
+          mobileImg.src = slide.srcMobile;
+          mobileImg.onload = checkBothLoaded;
+        } else {
+          checkBothLoaded();
+        }
+      });
+    }, 1000); // Wait 1 second before loading other slides
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Get the appropriate image source based on screen size
@@ -81,7 +93,7 @@ const Hero: React.FC = () => {
           {/* Dark overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
           
-          {/* Actual image element instead of background */}
+          {/* CRITICAL OPTIMIZATION: Add fetchpriority="high" to first slide only */}
           <img
             src={getImageSrc(slide)}
             alt={slide.alt}
@@ -89,6 +101,12 @@ const Hero: React.FC = () => {
             style={{
               objectPosition: slide.id === 'slide1' ? 'center 35%' : 'center center'
             }}
+            // HIGH PRIORITY for LCP element (first slide)
+            fetchPriority={index === 0 ? "high" : "low"}
+            // Don't lazy load the first image, lazy load others
+            loading={index === 0 ? "eager" : "lazy"}
+            // Add importance hint for first slide
+            {...(index === 0 && { 'data-priority': 'critical' })}
           />
         </div>
       ))}
